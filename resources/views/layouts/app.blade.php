@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
- 
+
 </head>
 
 <body>
@@ -45,14 +45,22 @@
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/login/conducteur') }}">{{ __('Login as driver') }}</a>
-                                </li>
-                                
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('registre/conducteur') }}">{{ __('Register as driver') }}</a>
-                                </li>
+                            <a class="nav-link" href="{{ url('/login/conducteur') }}">{{ __('Login as driver') }}</a>
+                        </li>
 
-                           
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('registre/conducteur') }}">{{ __('Register as driver') }}</a>
+                        </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/login/client') }}">{{ __('Login as client') }}</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('registre/client') }}">{{ __('Register as client') }}</a>
+                            </li>
+
+
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

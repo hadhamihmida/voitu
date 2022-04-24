@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-    
+
     public function __construct(){
         $this->middleware('guest');
         $this->middleware('guest:conducteur');
@@ -27,7 +27,7 @@ class RegisterController extends Controller
     }
     public function showClientRegisterForm()
     {
-     return view('auth.registreC',['url' =>'client']);
+     return view('auth.registerC',['url' =>'client']);
     }
 
     public function createConducteur(Request $request){
@@ -56,7 +56,12 @@ class RegisterController extends Controller
 //client
 public function createClient(Request $request){
     $request->validate([
-
+        'nom'=>'required',
+        'email'=>'required',
+        'date_naissance'=>'required',
+        'numero_telephone'=>'required',
+        'cin'=>'required',
+        'password'=>'required'
     ]);
     $client = Client::create([
         'nom' => $request['nom'],
@@ -65,7 +70,6 @@ public function createClient(Request $request){
         'numero_telephone' => $request['numero_telephone'],
         'cin' => $request['cin'],
         'password' => Hash::make($request['password']),
-
     ]);
     return redirect()->intended('login/client');
 }
