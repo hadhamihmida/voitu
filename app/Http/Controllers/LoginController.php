@@ -31,7 +31,7 @@ public function conducteurLogin(Request  $request)
 
     ]);
     if (Auth::guard('conducteur')->attempt(['email' => $request->email , 'password' => $request->password], $request->get('remember'))){
-        return redirect()->intended ('/conducteur');
+        return redirect()->intended('/trajet');
     }
     return back()->withInput($request->only('email','remember'));
 }

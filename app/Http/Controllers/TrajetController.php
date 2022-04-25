@@ -9,13 +9,13 @@ class TrajetController extends Controller
 {
     public function index()
     {
-         $trajets = Trajet::paginate(3);
+         $trajets = Trajet::query()->get();
        // $annees  = array('1' => 'one', '2' => 'two' );
         return view('trajet.index', compact('trajets'));
-       
+
     }
 
-  
+
     /**
      * Show the form for creating a new resource.
      *
@@ -23,10 +23,7 @@ class TrajetController extends Controller
      */
     public function create()
     {
-        //return view('trajet.create');
-        $trajets = Trajet::all();
-        
-        return view('trajet.create',compact('trajets'));
+        return view('trajet.create' );
     }
 
     /**
@@ -42,15 +39,15 @@ class TrajetController extends Controller
             'ville_arriver' => 'required',
             'heure_depart' => 'required',
             'heure_arriver' => 'required',
-           
+
          ]);
         // dd($request->all());
        Trajet::create($request->all());
-   
+
         return redirect()->route('trajet.index')
                         ->with('success','trajet creer avec succeés.');
     }
-   
+
 
     public function getMessages(){
          return $messages=[
@@ -74,7 +71,7 @@ class TrajetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -103,12 +100,12 @@ class TrajetController extends Controller
             'heure_depart' => 'required',
             'heure_arriver' => 'required',
         ]);
-    
+
         $trajets->update($request->all());
-    
+
         return redirect()->route('trajet.index')
                         ->with('success','trajet updated successfully');
-           
+
     }
 
     /**
@@ -119,11 +116,11 @@ class TrajetController extends Controller
      */
     public function destroy($id)
     {
-         
+
         $trajets  = Trajet::findOrFail($id);
         $trajets->delete();
 
         return redirect('/trajet')->with('completed', 'trajet suprimer!!');
     }
-  
+
 }
